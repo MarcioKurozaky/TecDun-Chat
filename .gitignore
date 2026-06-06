@@ -44,3 +44,6 @@ app-example
 
 # Windows reserved device names (filesystem anomaly)
 nul
+
+# Expo Router auto-generated route schemas
+*.schema.ts

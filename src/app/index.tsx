@@ -7,6 +7,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function Index() {
   const [appIsLoaded, setAppIsLoaded] = useState(false);
+  const isAuth = false;
 
   useEffect(() => {
     const setTimeOut = async () => {
@@ -36,5 +37,5 @@ export default function Index() {
     return null;
   }
 
-  return <Redirect href="/auth" />;
+  return <Redirect href={isAuth ? "/chat/index" : "/auth"} />;
 }
