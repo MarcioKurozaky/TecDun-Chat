@@ -1,63 +1,15 @@
-import { StyleSheet, Text } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-
-import * as SplashScreen from "expo-splash-screen";
-
-import { useEffect, useState } from "react";
-
-SplashScreen.preventAutoHideAsync();
+import { Redirect } from "expo-router";
 
 export default function Index() {
-  const [appIsLoaded, setAppIsLoaded] = useState(false);
+  const isAuth = false;
 
-  useEffect(() => {
-    const setTimeOut = async () => {
-      try {
-        // carregar fontes, auth, api, etc...
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setAppIsLoaded(true);
-      }
-    };
-
-    setTimeOut();
-  }, []);
-
-  useEffect(() => {
-    const hideSplash = async () => {
-      if (appIsLoaded) {
-        await SplashScreen.hideAsync();
-      }
-    };
-
-    hideSplash();
-  }, [appIsLoaded]);
-
-  if (!appIsLoaded) {
-    return null;
+  if (!isAuth) {
+    return <Redirect href="/auth" />;
   }
 
-  return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.label}>Hi everyone!</Text>
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
+  return <Redirect href="/chat" />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  label: {
-    color: "#000",
+ "#000",
     fontSize: 18,
     fontWeight: "500",
   },

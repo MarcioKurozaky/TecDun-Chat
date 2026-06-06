@@ -1,5 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "expo-router";
+import { Controller, useForm } from "react-hook-form";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -9,19 +11,51 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { PageContainer } from "@/components/PageContainer";
+import {
+  forgotPasswordSchema,
+  type ForgotPasswordFormDataProps,
+} from "@/lib/validators";
+import { AppError } from "@/utils/AppError";
 import theme from "@/utils/theme";
 
 import { useState } from "react";
 
 export default function ForgotPasswordScreen() {
-  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit() {
-    console.log("Forgot password", { email });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ForgotPasswordFormDataProps>({
+    resolver: yupResolver(forgotPasswordSchema),
+  });
+
+  async function handleForgotPassword({ email }: ForgotPasswordFormDataProps) {
+    try {
+      setIsLoading(true);
+
+      console.log("Forgot password", { email });
+
+      Toast.show({
+        type: "success",
+        text1: "Link de recuperação enviado para seu e-mail!",
+      });
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError
+        ? error.message
+        : "Não foi possível recuperar a senha. Tente novamente mais tarde.";
+
+      Toast.show({ type: "error", text1: title });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -43,18 +77,31 @@ export default function ForgotPasswordScreen() {
               </Text>
             </View>
 
-            <Input
-              label="Email"
-              icon="envelope"
-              iconPack={FontAwesome}
-              placeholder="seu@email.com"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={email}
-              onChangeText={setEmail}
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Email"
+                  icon="envelope"
+                  iconPack={FontAwesome}
+                  placeholder="seu@email.com"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  onChangeText={onChange}
+                  value={value}
+                  onSubmitEditing={handleSubmit(handleForgotPassword)}
+                  returnKeyType="send"
+                  errorMessage={errors.email?.message}
+                />
+              )}
             />
 
-            <Button title="Enviar link" onPress={handleSubmit} />
+            <Button
+              title="Enviar link"
+              onPress={handleSubmit(handleForgotPassword)}
+              isLoading={isLoading}
+            />
 
             <View style={styles.footer}>
               <Link href="/auth" style={styles.footerLink}>

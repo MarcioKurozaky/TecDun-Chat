@@ -1,5 +1,7 @@
 import { FontAwesome } from "@expo/vector-icons";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "expo-router";
+import { Controller, useForm } from "react-hook-form";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -9,20 +11,48 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
 
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { PageContainer } from "@/components/PageContainer";
+import { loginSchema, type LoginFormDataProps } from "@/lib/validators";
+import { AppError } from "@/utils/AppError";
 import theme from "@/utils/theme";
 
 import { useState } from "react";
 
 export default function LoginScreen() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit() {
-    console.log("Login", { email, password });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormDataProps>({
+    resolver: yupResolver(loginSchema),
+  });
+
+  async function handleLogin({ email, password }: LoginFormDataProps) {
+    try {
+      setIsLoading(true);
+
+      console.log("Login", { email, password });
+
+      Toast.show({
+        type: "success",
+        text1: "Login realizado com sucesso!",
+      });
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+      const title = isAppError
+        ? error.message
+        : "Não foi possível entrar. Tente novamente mais tarde.";
+
+      Toast.show({ type: "error", text1: title });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -42,32 +72,52 @@ export default function LoginScreen() {
               <Text style={styles.subtitle}>Entre com sua conta</Text>
             </View>
 
-            <Input
-              label="Email"
-              icon="envelope"
-              iconPack={FontAwesome}
-              placeholder="seu@email.com"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={email}
-              onChangeText={setEmail}
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Email"
+                  icon="envelope"
+                  iconPack={FontAwesome}
+                  placeholder="seu@email.com"
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  onChangeText={onChange}
+                  value={value}
+                  errorMessage={errors.email?.message}
+                />
+              )}
             />
 
-            <Input
-              label="Senha"
-              icon="lock"
-              iconPack={FontAwesome}
-              placeholder="Sua senha"
-              secureTextEntry
-              value={password}
-              onChangeText={setPassword}
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Senha"
+                  icon="lock"
+                  iconPack={FontAwesome}
+                  placeholder="Sua senha"
+                  secureTextEntry
+                  onChangeText={onChange}
+                  value={value}
+                  onSubmitEditing={handleSubmit(handleLogin)}
+                  returnKeyType="send"
+                  errorMessage={errors.password?.message}
+                />
+              )}
             />
 
             <Link href="/auth/forgot-password" style={styles.forgotLink}>
               Esqueceu sua senha?
             </Link>
 
-            <Button title="Entrar" onPress={handleSubmit} />
+            <Button
+              title="Entrar"
+              onPress={handleSubmit(handleLogin)}
+              isLoading={isLoading}
+            />
 
             <View style={styles.footer}>
               <Text style={styles.footerText}>Não tem conta? </Text>
@@ -137,6 +187,6 @@ const styles = StyleSheet.create({
   footerLink: {
     fontSize: theme.fontSizes.sm,
     color: theme.colors.blue["600"],
-    fontFamily: "bold",
+    fontWeight: 600,
   },
 });
