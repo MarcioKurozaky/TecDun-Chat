@@ -1,11 +1,6 @@
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
 import Toast from "react-native-toast-message";
-
-import { useEffect } from "react";
-
-SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
   const [loaded, error] = useFonts({
@@ -22,12 +17,6 @@ export default function Layout() {
     thin: require("../../assets/fonts/Roboto-Thin.ttf"),
     thinItalic: require("../../assets/fonts/Roboto-ThinItalic.ttf"),
   });
-
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
 
   if (!loaded && !error) {
     return null;
