@@ -37,5 +37,5 @@ export default function Index() {
     return null;
   }
 
-  return <Redirect href={isAuth ? "/chat/index" : "/auth"} />;
+  return <Redirect href={isAuth ? "/chat" : "/auth"} />;
 }
