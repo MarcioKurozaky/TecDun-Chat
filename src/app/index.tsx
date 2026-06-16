@@ -8,7 +8,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function Index() {
   const [appIsLoaded, setAppIsLoaded] = useState(false);
-  const isAuth = false;
+  const isAuth = true;
 
   useEffect(() => {
     const setTimeOut = async () => {
