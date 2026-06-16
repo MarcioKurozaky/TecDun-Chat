@@ -5,9 +5,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import theme from "@/utils/theme";
 
 import { TopBar } from "@/components/TopBar";
-import ChatListScreen from "@/screens/ChatListScreen";
+import StatusScreen from "@/screens/StatusScreen";
 
-export default function ChatsScreen() {
+export default function Status() {
   const handleCameraPress = useCallback(() => {
     console.log("Camera pressed");
   }, []);
@@ -29,7 +29,7 @@ export default function ChatsScreen() {
       />
 
       <View style={styles.content}>
-        <ChatListScreen />
+        <StatusScreen />
       </View>
     </SafeAreaView>
   );

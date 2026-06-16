@@ -1,16 +1,42 @@
-import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { useCallback } from "react";
+import { StyleSheet, View } from "react-native";
+import { useRouter } from "expo-router";
 
+import { type ChatItem } from "@/data/mockData";
 import theme from "@/utils/theme";
 
-export default function ChatListScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Chat list screen</Text>
+import { ChatList } from "@/components/ChatList";
+import { FAB } from "@/components/FAB";
 
-      <Link href="/chat/screen" style={styles.link}>
-        Ir para Chat
-      </Link>
+export default function ChatListScreen() {
+  const router = useRouter();
+
+  const handleChatPress = useCallback(
+    (item: ChatItem) => {
+      router.push({
+        pathname: "/chat/screen",
+        params: { id: item.id, name: item.name, avatarUrl: item.avatarUrl ?? "" },
+      });
+    },
+    [router],
+  );
+
+  const handleArchivedPress = useCallback(() => {
+    console.log("Archived pressed");
+  }, []);
+
+  const handleFabPress = useCallback(() => {
+    console.log("FAB pressed");
+  }, []);
+
+  return (  
+    <View style={styles.container}>
+      <ChatList
+        onChatPress={handleChatPress}
+        onArchivedPress={handleArchivedPress}
+      />
+
+      <FAB onPress={handleFabPress} />
     </View>
   );
 }
@@ -18,19 +44,6 @@ export default function ChatListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  title: {
-    fontSize: theme.fontSizes.lg,
-    fontFamily: "regular",
-  },
-
-  link: {
-    fontSize: theme.fontSizes.md,
-    color: theme.colors.blue["800"],
-    marginTop: 24,
-    fontFamily: "regular",
+    backgroundColor: theme.colors.gray[100],
   },
 });

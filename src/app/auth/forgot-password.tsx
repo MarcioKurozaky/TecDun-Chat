@@ -70,7 +70,7 @@ export default function ForgotPasswordScreen() {
         >
           <PageContainer>
             <View style={styles.header}>
-              <FontAwesome name="wechat" size={64} color={theme.colors.blue["600"]} />
+              <FontAwesome name="wechat" size={64} color={theme.colors.teal["500"]} />
               <Text style={styles.title}>App Chat</Text>
               <Text style={styles.subtitle}>
                 Digite seu email para recuperar
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
 
   footerLink: {
     fontSize: theme.fontSizes.sm,
-    color: theme.colors.blue["600"],
+    color: theme.colors.teal["500"],
     fontWeight: 600,
   },
 });

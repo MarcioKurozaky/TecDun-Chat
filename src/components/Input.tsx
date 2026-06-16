@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   },
 
   inputFocused: {
-    borderColor: theme.colors.green["500"],
+    borderColor: theme.colors.teal["500"],
     backgroundColor: theme.colors.white,
   },
 

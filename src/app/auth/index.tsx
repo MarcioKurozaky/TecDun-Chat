@@ -67,7 +67,7 @@ export default function LoginScreen() {
         >
           <PageContainer>
             <View style={styles.header}>
-              <FontAwesome name="wechat" size={64} color={theme.colors.green["500"]} />
+              <FontAwesome name="wechat" size={64} color={theme.colors.teal["500"]} />
               <Text style={styles.title}>App Chat</Text>
               <Text style={styles.subtitle}>Entre com sua conta</Text>
             </View>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
 
   forgotLink: {
     fontSize: theme.fontSizes.sm,
-    color: theme.colors.blue["600"],
+    color: theme.colors.teal["500"],
     fontWeight: 600,
     textAlign: "right",
     marginBottom: 16,
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
 
   footerLink: {
     fontSize: theme.fontSizes.sm,
-    color: theme.colors.blue["600"],
+    color: theme.colors.teal["500"],
     fontWeight: 600,
   },
 });

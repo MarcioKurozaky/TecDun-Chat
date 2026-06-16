@@ -1,5 +1,5 @@
-import ChatListScreen from "@/screens/ChatListScreen";
+import { Redirect } from "expo-router";
 
 export default function ChatIndex() {
-  return <ChatListScreen />;
+  return <Redirect href="/(tabs)" />;
 }

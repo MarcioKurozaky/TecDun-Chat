@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
   link: {
     fontSize: theme.fontSizes.md,
-    color: theme.colors.blue["800"],
+    color: theme.colors.teal["500"],
     marginTop: 24,
     fontFamily: "regular",
   },

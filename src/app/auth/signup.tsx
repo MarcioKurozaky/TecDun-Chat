@@ -75,7 +75,7 @@ export default function SignupScreen() {
               <FontAwesome
                 name="wechat"
                 size={64}
-                color={theme.colors.blue["600"]}
+                color={theme.colors.teal["500"]}
               />
               <Text style={styles.title}>App Chat</Text>
               <Text style={styles.subtitle}>Crie sua conta</Text>
@@ -224,6 +224,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 24,
+    marginBottom: 50,
   },
 
   footerText: {
@@ -233,7 +234,7 @@ const styles = StyleSheet.create({
 
   footerLink: {
     fontSize: theme.fontSizes.sm,
-    color: theme.colors.blue["600"],
+    color: theme.colors.teal["500"],
     fontWeight: 600,
   },
 });

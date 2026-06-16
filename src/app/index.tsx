@@ -1,6 +1,7 @@
 import { Redirect } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 
+import { Loading } from "@/components/Loading";
 import { useEffect, useState } from "react";
 
 SplashScreen.preventAutoHideAsync();
@@ -34,8 +35,8 @@ export default function Index() {
   }, [appIsLoaded]);
 
   if (!appIsLoaded) {
-    return null;
+    return <Loading />;
   }
 
-  return <Redirect href={isAuth ? "/chat" : "/auth"} />;
+  return <Redirect href={isAuth ? "/(tabs)" : "/auth"} />;
 }

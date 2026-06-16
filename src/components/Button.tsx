@@ -35,7 +35,7 @@ export function Button({
     >
       {isLoading ? (
         <ActivityIndicator
-          color={variant === "solid" ? theme.colors.white : theme.colors.green["700"]}
+          color={variant === "solid" ? theme.colors.white : theme.colors.teal["700"]}
         />
       ) : (
         <Text
@@ -61,21 +61,21 @@ const styles = StyleSheet.create({
   },
 
   solid: {
-    backgroundColor: theme.colors.green["700"],
+    backgroundColor: theme.colors.teal["700"],
   },
 
   solidPressed: {
-    backgroundColor: theme.colors.green["500"],
+    backgroundColor: theme.colors.teal["500"],
   },
 
   outline: {
     backgroundColor: "transparent",
     borderWidth: 1,
-    borderColor: theme.colors.green["700"],
+    borderColor: theme.colors.teal["700"],
   },
 
   outlinePressed: {
-    borderColor: theme.colors.green["500"],
+    borderColor: theme.colors.teal["500"],
   },
 
   disabled: {
@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
   },
 
   outlineText: {
-    color: theme.colors.green["700"],
+    color: theme.colors.teal["700"],
   },
 });

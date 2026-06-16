@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "app-whatsapp-firebase",
-    "slug": "app-whatsapp-firebase",
+    "name": "TecDun-Chat",
+    "slug": "tecdun-chat",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "app-whatsapp-firebase",
+    "scheme": "tecdun-chat",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -20,7 +20,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.appwhatsappfirebase"
+      "package": "com.tecdun.chat"
     },
     "web": {
       "output": "static",

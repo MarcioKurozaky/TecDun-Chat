@@ -1,0 +1,4 @@
+Microsoft Windows [versÆo 10.0.22000.2538]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+F:\projetos\react_native\novos\App_Chat\mobile>

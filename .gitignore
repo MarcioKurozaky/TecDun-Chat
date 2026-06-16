@@ -47,3 +47,24 @@ nul
 
 # Expo Router auto-generated route schemas
 *.schema.ts
+
+# OpenCode
+opencode.json
+skills-lock.json
+.opencode/
+
+# Agents
+.agents/
+
+# Spec Kit
+.specify/
+
+# Stitch
+.stitch/
+STITCH-CODE.md
+
+# Specs
+specs/
+
+# Accidental file
+C:Usersmarcispecify-output.txt
