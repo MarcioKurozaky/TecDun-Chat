@@ -177,32 +177,6 @@ npx expo-doctor
 | `npm run web` | Inicia dev server para web |
 | `npm run lint` | ESLint (eslint-config-expo) |
 
-<br>
-
-## Fases do Projeto / Project Phases
-
-### Skills utilizadas em cada fase / Skills used in each phase
-
-**Fase 1 — Descoberta / Discovery**
-Skills: [`brainstorming`](.opencode/skills/brainstorming/)
-
-**Fase 2 — Especificação / Spec**
-Skills: [`clean-typescript`](.opencode/skills/clean-typescript/), [`building-native-ui`](.opencode/skills/building-native-ui/), [`zustand`](.opencode/skills/zustand/)
-
-**Fase 3 — Plano Técnico / Technical Plan**
-Skills: [`native-data-fetching`](.opencode/skills/native-data-fetching/), [`firebase-firestore`](.opencode/skills/firebase-firestore/), [`firebase-auth-basics`](.opencode/skills/firebase-auth-basics/), [`vercel-react-native-skills`](.opencode/skills/vercel-react-native-skills/), [`react-native-best-practices`](.opencode/skills/react-native-best-practices/)
-
-**Fase 4 — Implementação / Implementation**
-Skills: [`firebase-basics`](.opencode/skills/firebase-basics/), [`axios`](.opencode/skills/axios/), [`jwt-authentication`](.opencode/skills/jwt-authentication/), [`expo-deployment`](.opencode/skills/expo-deployment/)
-
-**Fase 5 — Revisão / Review**
-Skills: [`requesting-code-review`](.opencode/skills/requesting-code-review/), [`clean-typescript`](.opencode/skills/clean-typescript/)
-
-**Fase 6 — README**
-Skills: [`create-readme`](.opencode/skills/create-readme/)
-
-<br>
-
 ---
 
 <div align="center">
