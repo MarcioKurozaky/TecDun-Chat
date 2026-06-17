@@ -1,50 +1,212 @@
-# Welcome to your Expo app 👋
+<div align="center">
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# TecDun-Chat
 
-## Get started
+### Mensageiro instantâneo feito com Expo + Firebase
+### Instant messenger built with Expo + Firebase
 
-1. Install dependencies
+[![Expo SDK](https://img.shields.io/badge/Expo_SDK-54-000020?style=flat-square&logo=expo&logoColor=white)](https://expo.dev)
+[![React Native](https://img.shields.io/badge/React_Native-0.81-61DAFB?style=flat-square&logo=react&logoColor=white)](https://reactnative.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript_Strict-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)](https://firebase.google.com)
+[![New Architecture](https://img.shields.io/badge/New_Architecture-enabled-00B37E?style=flat-square)](https://reactnative.dev/docs/the-new-architecture/landing-page)
+[![Expo Router](https://img.shields.io/badge/Expo_Router-6.0-000020?style=flat-square&logo=expo&logoColor=white)](https://docs.expo.dev/router/introduction/)
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+</div>
 
-   ```bash
-   npx expo start
-   ```
+<br>
 
-In the output, you'll find options to open the app in a
+## Sobre / About
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+**PT** — TecDun-Chat é um aplicativo de mensagens instantâneas inspirado no WhatsApp, construído com Expo SDK 54 e React Native 0.81 (New Architecture). Oferece autenticação Firebase, chat em tempo real com bolhas de mensagem, lista de conversas, status, chamadas e muito mais. Projetado com TypeScript strict, design system próprio e padrões modernos de navegação file-based.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+**EN** — TecDun-Chat is an instant messaging app inspired by WhatsApp, built with Expo SDK 54 and React Native 0.81 (New Architecture). It features Firebase authentication, real-time chat with message bubbles, conversation list, status, calls, and more. Engineered with TypeScript strict, a custom design system, and modern file-based routing.
 
-## Get a fresh project
+<br>
 
-When you're ready, run:
+## Stack / Stack
 
-```bash
-npm run reset-project
+| Camada / Layer | Tecnologia / Technology |
+|---------------|------------------------|
+| **Mobile** | React Native 0.81 + Expo SDK 54 |
+| **Navegação / Navigation** | Expo Router 6 (file-based) |
+| **Autenticação / Auth** | Firebase Auth (email + telefone) |
+| **Banco / Database** | Cloud Firestore |
+| **Arquivos / Storage** | Firebase Storage |
+| **Push** | Firebase Cloud Messaging |
+| **Estado / State** | Zustand |
+| **Formulários / Forms** | react-hook-form + yup |
+| **UI** | StyleSheet.create + @expo/vector-icons |
+| **Ícones / Icons** | @expo/vector-icons (Ionicons + FontAwesome) |
+| **Lint** | ESLint + eslint-config-expo |
+| **Git Hooks** | Husky + commitlint |
+
+<br>
+
+## Funcionalidades / Features
+
+| Feature | Status |
+|---------|--------|
+| Login / Signup / Forgot Password | ✅ |
+| Chat List com previews | ✅ |
+| Chat Screen com bolhas de mensagem | ✅ |
+| Bolhas de entrada (branca) / saída (verde) | ✅ |
+| Auto-scroll em novas mensagens | ✅ |
+| Aba Status | ✅ |
+| Aba Communities | ✅ |
+| Aba Calls (lista + FAB de chamada) | ✅ |
+| Tela de Settings | ✅ |
+| Splash Screen + Font Loading | ✅ |
+| Design System próprio (cores teal/green) | ✅ |
+| Firebase configurado | ✅ |
+| TypeScript strict mode | ✅ |
+| New Architecture habilitada | ✅ |
+
+<br>
+
+## Estrutura de Diretórios / Directory Structure
+
+```
+src/
+├── app/                   # Expo Router (file-based routing)
+│   ├── _layout.tsx        # Layout raiz (Stack navigator)
+│   ├── index.tsx          # Rota inicial (splash → redirect)
+│   ├── auth/              # Rotas de autenticação
+│   │   ├── index.tsx      # Login
+│   │   ├── signup.tsx     # Cadastro
+│   │   └── forgot-password.tsx
+│   ├── (tabs)/            # Abas principais
+│   │   ├── _layout.tsx    # Tab navigator
+│   │   ├── index.tsx      # Chats
+│   │   ├── status.tsx     # Status
+│   │   ├── communities.tsx
+│   │   ├── calls.tsx
+│   │   └── settings.tsx
+│   └── chat/              # Tela de conversa
+│       ├── index.tsx
+│       └── screen.tsx
+├── screens/               # Telas (lógica + layout)
+├── components/            # Componentes reutilizáveis
+│   ├── Button.tsx
+│   ├── Input.tsx
+│   ├── TopBar.tsx
+│   ├── FAB.tsx
+│   ├── UserPhoto.tsx
+│   ├── ChatList.tsx / ChatListItem.tsx
+│   ├── message-bubble.tsx / message-list.tsx
+│   ├── StatusIcon / StatusRing / StatusListItem
+│   ├── call-list-item / call-link-row / call-list
+│   └── ...
+├── data/                  # Mock data
+├── lib/                   # Firebase config + validators
+├── utils/                 # Tema + AppError
+└── assets/                # Fontes + imagens
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+<br>
 
-## Learn more
+## Design System
 
-To learn more about developing your project with Expo, look at the following resources:
+O tema usa uma paleta teal/green inspirada no WhatsApp, com escala de cinza para superfícies e cores de status/destaque.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `teal.700` | `#00453d` | Primary / Header |
+| `teal.500` | `#075e54` | Interactive elements |
+| `green.50` | `#dcf8c6` | Outgoing bubble |
+| `whatsapp` | `#25D366` | Status ring / accent |
+| `blue.500` | `#34B7F1` | Read receipt |
+| `gray.100` | `#f7f9fc` | Screen background |
+| `gray.900` | `#191c1e` | Text on surface |
 
-## Join the community
+<br>
 
-Join our community of developers creating universal apps.
+## Começando / Getting Started
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Pré-requisitos / Prerequisites
+
+- Node.js >= 20
+- Expo CLI (`npx expo`)
+- Android Studio (Android) ou Xcode (iOS)
+
+### Instalação / Installation
+
+```bash
+# Clone o repositório / Clone the repository
+git clone https://github.com/seu-usuario/tecdun-chat.git
+
+# Entre no diretório / Navigate to the directory
+cd tecdun-chat
+
+# Instale as dependências / Install dependencies
+npm install
+```
+
+### Rodar / Run
+
+```bash
+# Desenvolvimento / Development
+npm start             # Expo dev server
+
+# Plataformas específicas / Specific platforms
+npm run android       # Android
+npm run ios           # iOS
+npm run web           # Web
+
+# Lint
+npm run lint
+
+# TypeScript check
+npx tsc --noEmit
+
+# Expo doctor
+npx expo-doctor
+```
+
+<br>
+
+## Scripts Disponíveis / Available Scripts
+
+| Script | Descrição / Description |
+|--------|------------------------|
+| `npm start` | Inicia o servidor de desenvolvimento Expo |
+| `npm run android` | Build + run no Android |
+| `npm run ios` | Build + run no iOS |
+| `npm run web` | Inicia dev server para web |
+| `npm run lint` | ESLint (eslint-config-expo) |
+
+<br>
+
+## Fases do Projeto / Project Phases
+
+### Skills utilizadas em cada fase / Skills used in each phase
+
+**Fase 1 — Descoberta / Discovery**
+Skills: [`brainstorming`](.opencode/skills/brainstorming/)
+
+**Fase 2 — Especificação / Spec**
+Skills: [`clean-typescript`](.opencode/skills/clean-typescript/), [`building-native-ui`](.opencode/skills/building-native-ui/), [`zustand`](.opencode/skills/zustand/)
+
+**Fase 3 — Plano Técnico / Technical Plan**
+Skills: [`native-data-fetching`](.opencode/skills/native-data-fetching/), [`firebase-firestore`](.opencode/skills/firebase-firestore/), [`firebase-auth-basics`](.opencode/skills/firebase-auth-basics/), [`vercel-react-native-skills`](.opencode/skills/vercel-react-native-skills/), [`react-native-best-practices`](.opencode/skills/react-native-best-practices/)
+
+**Fase 4 — Implementação / Implementation**
+Skills: [`firebase-basics`](.opencode/skills/firebase-basics/), [`axios`](.opencode/skills/axios/), [`jwt-authentication`](.opencode/skills/jwt-authentication/), [`expo-deployment`](.opencode/skills/expo-deployment/)
+
+**Fase 5 — Revisão / Review**
+Skills: [`requesting-code-review`](.opencode/skills/requesting-code-review/), [`clean-typescript`](.opencode/skills/clean-typescript/)
+
+**Fase 6 — README**
+Skills: [`create-readme`](.opencode/skills/create-readme/)
+
+<br>
+
+---
+
+<div align="center">
+
+<sub>Built with ❤️ using Expo, React Native & Firebase</sub>
+
+</div>
